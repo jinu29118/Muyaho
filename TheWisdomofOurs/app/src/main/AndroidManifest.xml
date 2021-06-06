@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheWisdomOfOurs">
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".DetailedClassActivity"></activity>
+        <activity android:name=".AddClassActivity" />
+        <activity android:name=".EditProfileActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".RecommandActivity" />
         <activity android:name=".AgeActivity" />
