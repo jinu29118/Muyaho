@@ -12,8 +12,10 @@ class AddClassActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_class)
         init()
-
+        //fasdf
+        //123123
     }
+
     private fun init(){
         val cancelBtn = findViewById<Button>(R.id.cancelBtnMake)
         val createBtn = findViewById<Button>(R.id.createBtnMake)
