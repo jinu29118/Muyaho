@@ -12,6 +12,7 @@ class AddClassActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_class)
         init()
+
     }
     private fun init(){
         val cancelBtn = findViewById<Button>(R.id.cancelBtnMake)
