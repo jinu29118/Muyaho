@@ -9,6 +9,7 @@ class CategoryActivity : AppCompatActivity() {
 
     private var rv_category : RecyclerView? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
