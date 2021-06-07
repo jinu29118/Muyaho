@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheWisdomOfOurs">
-        <activity android:name=".DetailedClassActivity"></activity>
+        <activity
+            android:name=".MyLectureActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".HotLectureActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".DetailedClassActivity" />
         <activity android:name=".AddClassActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".ProfileActivity" />
