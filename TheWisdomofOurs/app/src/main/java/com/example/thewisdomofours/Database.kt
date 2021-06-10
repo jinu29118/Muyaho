@@ -25,14 +25,6 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         val tableName3="history"//히스토리 테이블 이름.
         val historyid="id"//히스토리id
         val date="date_history"
-
-        val table_class="classname"
-        val locs="locateString"
-        val class_title="classTitle"
-        val class_content="classContent"
-        val isonline="isOnline"
-        val class_cap="classCapacity"
-        val class_date="classDate"
     }
     //TODO-변수들 수정. 다른데서 들고온거임.
     override fun onCreate(db: SQLiteDatabase?) {
@@ -54,17 +46,9 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
                 "$habitid integer," +
                 "$date text);"
 
-        val create_class="create table if not exists $table_class(" +
-                "$locs text," +
-                "$class_title text," +
-                "$class_content text," +
-                "$isonline integer," +
-                "$class_cap integer," +
-                "$class_date text," +
         db!!.execSQL(create_table2)
         db.execSQL(create_table)
         db.execSQL(create_table3)
-        db.execSQL(create_class)
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
 
@@ -100,14 +84,14 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         db.close()
         return flag
     }
-    /*fun insertHabitHist(habitHistory: HabitHistory){
+    fun insertHabitHist(habitHistory: HabitHistory){
         val values = ContentValues()
         values.putNull(historyid)
         values.put(habitid,habitHistory.habitId)
         values.put(date, habitHistory.date)
         val db = writableDatabase
         db.insert(tableName3,null,values)
-    }*/
+    }
     fun deleteHistory(id2:Int, date2:String) {
         val db = this.writableDatabase
         db.delete(tableName3, "$habitid=? AND $date=?", arrayOf(id2.toString(), date2))
