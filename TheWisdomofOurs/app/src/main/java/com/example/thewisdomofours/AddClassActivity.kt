@@ -8,6 +8,7 @@ import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 
 class AddClassActivity : AppCompatActivity() {
+    var db = Database(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_class)
@@ -23,7 +24,7 @@ class AddClassActivity : AppCompatActivity() {
         var content=findViewById<EditText>(R.id.content_make)
         var address=findViewById<EditText>(R.id.address_make)
         var date=findViewById<EditText>(R.id.date_make)
-        var online = true
+        var online = 1
         val picker = findViewById<NumberPicker>(R.id.capacitypicker)
         picker.minValue=1
         picker.maxValue=20
@@ -32,9 +33,9 @@ class AddClassActivity : AppCompatActivity() {
                 R.id.rg1->
                     when(checkedId){
                         R.id.radioButton_detail->
-                            online=true
+                            online=1
                         R.id.radioButton_detail2->
-                            online=false
+                            online=0
                     }
             }
         }
@@ -42,8 +43,7 @@ class AddClassActivity : AppCompatActivity() {
             onBackPressed()
         }
         createBtn.setOnClickListener{
-            //TODO 나중에 이부분 구현.
-            //var capacity = picker.value
+            db.insertClass(address.text.toString(),title.text.toString(),content.text.toString(),online,picker.value,date.text.toString())
             onBackPressed()
         }
 

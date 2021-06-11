@@ -33,6 +33,15 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         val isonline="isOnline"
         val class_cap="classCapacity"
         val class_date="classDate"
+        val class_id="classId"
+        val class_people="now_people"
+        val class_added="class_added"
+
+        val table_comment="commentable"
+        val editor="editor"
+        val comment_content="comment_content"
+        val comment_id="comment_id"
+        val comment_id2="real_id"
     }
     //TODO-변수들 수정. 다른데서 들고온거임.
     override fun onCreate(db: SQLiteDatabase?) {
@@ -61,6 +70,14 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
                 "$isonline integer," +
                 "$class_cap integer," +
                 "$class_date text," +
+                "$class_people int," +
+                "$class_added int," +
+                "$class_id integer primary key autoincrement);"
+        val create_comment="create table if not exists $table_comment(" +
+                "$editor text," +
+                "$comment_id integer," +
+                "$comment_id2 integer primary key autoincrement," +
+                "$comment_content text);"
         db!!.execSQL(create_table2)
         db.execSQL(create_table)
         db.execSQL(create_table3)
@@ -114,4 +131,179 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         db.close()
     }
     //TODO- DB작성.
+    fun insertClass(loc:String, title:String, content:String, online:Int, cap:Int, date:String){
+        val values = ContentValues()
+        values.put(locs, loc)
+        values.put(class_title, title)
+        values.put(class_content, content)
+        values.put(isonline, online)
+        values.put(class_cap, cap)
+        values.put(class_date, date)
+        values.put(class_people, 0)
+        values.put(class_added, 0)
+        values.putNull(class_id)
+        val db = writableDatabase
+        db.insert(table_class,null,values)
+    }
+    fun getTitle(id:Int):String{
+        val database=this.readableDatabase
+        val query = "select * frota$table_class where $class_id ='$id';"
+        val c = database.rawQuery(query,null)
+        var str = ""
+        while(c.moveToNext())
+            str= c.getString(c.getColumnIndex(class_title))
+        database.close()
+        c.close()
+        return str
+    }
+    fun getLocation(id:Int):String{
+        val database=this.readableDatabase
+        val query = "select * from $table_class where $class_id ='$id';"
+        val c = database.rawQuery(query,null)
+        var str = ""
+        while(c.moveToNext()) {
+            val str1 = c.getString(c.getColumnIndex(class_date))
+            val str2 = c.getString(c.getColumnIndex(locs))
+            str = "$str2, $str1"
+        }
+        database.close()
+        c.close()
+        return str
+    }
+    fun getDetail(id:Int):String{
+        val database=this.readableDatabase
+        val query = "select * from $table_class where $class_id ='$id';"
+        val c = database.rawQuery(query,null)
+        var str = ""
+        while(c.moveToNext())
+            str= c.getString(c.getColumnIndex(class_content))
+        database.close()
+        c.close()
+        return str
+    }
+    fun getPeople(id:Int):Int{
+        val database=this.readableDatabase
+        val query = "select * from $table_class where $class_id ='$id';"
+        val c = database.rawQuery(query,null)
+        var str = 1
+        while(c.moveToNext())
+            str= c.getInt(c.getColumnIndex(class_people))
+        database.close()
+        c.close()
+        return str
+    }
+    fun getCapacity(id:Int):Int{
+        val database=this.readableDatabase
+        val query = "select * from $table_class where $class_id ='$id';"
+        val c = database.rawQuery(query,null)
+        var str = 0
+        while(c.moveToNext())
+            str= c.getInt(c.getColumnIndex(class_cap))
+        database.close()
+        c.close()
+        return str
+    }
+    fun getAdded(id:Int):Int{
+        val database=this.readableDatabase
+        val query = "select * from $table_class where $class_id ='$id';"
+        val c = database.rawQuery(query,null)
+        var str = 0
+        while(c.moveToNext())
+            str= c.getInt(c.getColumnIndex(class_added))
+        database.close()
+        c.close()
+        return str
+    }
+    fun addPeople(id: Int) {
+        val strsql = "select * from $table_class where $habitid='$id';"
+        val db = writableDatabase
+        val db2 = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val cursor2 = db2.rawQuery(strsql, null)
+        val values = ContentValues()
+        while(cursor2.moveToNext()){
+            val str = cursor2.getInt(cursor.getColumnIndex(class_people))
+            values.put(class_people, (str + 1))
+            println(str + 1)
+        }
+        var flag = cursor.moveToFirst()
+        if(flag) {
+            db.update(
+                table_class, values, "$class_people=?",
+                arrayOf(
+                    cursor.getInt(cursor.getColumnIndex(class_people)).toString()
+                )
+            )
+            println("+")
+        }
+        cursor2.close()
+        db.close()
+    }
+    fun minusPeople(id: Int) {
+        val strsql = "select * from $table_class where $habitid='$id';"
+        val db = writableDatabase
+        val db2 = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val cursor2 = db2.rawQuery(strsql, null)
+        val values = ContentValues()
+        while(cursor2.moveToNext()){
+            val str = cursor2.getInt(cursor.getColumnIndex(class_people))
+            values.put(class_people, (str - 1))
+            println(str - 1)
+        }
+        var flag = cursor.moveToFirst()
+        if(flag) {
+            db.update(
+                table_class, values, "$class_people=?",
+                arrayOf(
+                    cursor.getInt(cursor.getColumnIndex(class_people)).toString()
+                )
+            )
+            println("+")
+        }
+        cursor2.close()
+        db.close()
+    }
+    fun setAdded(id:Int, added:Int):Boolean{
+        val strsql = "select * from $tableName where $habitid='$id';"
+        val db = writableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.moveToFirst()
+        if(flag) {
+            val values = ContentValues()
+            values.put(class_added, added)
+            db.update(
+                tableName, values, "$class_added=?", arrayOf(
+                    cursor.getString(cursor.getColumnIndex(title))
+                )
+            )
+        }
+        cursor.close()
+        db.close()
+        return flag
+    }
+    fun getComment(id:Int):ArrayList<MyComment>{
+        var AL = ArrayList<MyComment>()
+        var AL2 :MyComment
+        val database=readableDatabase
+        val query = "select * from $table_comment where $comment_id='$id';"
+        val c = database.rawQuery(query,null)
+        while(c.moveToNext()){
+            AL2= MyComment(c.getString(c.getColumnIndex(editor)),
+                c.getString(c.getColumnIndex(comment_content)))
+            AL.add(AL2)
+        }
+        c.close()
+        database.close()
+        return AL
+    }
+    fun insertComment(edit: String, cont:String, id:Int){
+        val values = ContentValues()
+        values.put(editor, edit)
+        values.put(comment_content, cont)
+        values.put(comment_id, id)
+        values.putNull(comment_id2)
+        val db = writableDatabase
+        db.insert(table_comment,null,values)
+    }
 }
