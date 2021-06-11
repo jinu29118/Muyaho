@@ -26,15 +26,15 @@
         <activity android:name=".RecommandActivity" />
         <activity android:name=".AgeActivity" />
         <activity android:name=".LocationActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".CategoryActivity"/>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".LoginActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
+        <activity android:name=".CategoryActivity"/>
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>

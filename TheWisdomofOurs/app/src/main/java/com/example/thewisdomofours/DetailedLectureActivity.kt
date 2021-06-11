@@ -64,6 +64,7 @@ class DetailedLectureActivity : AppCompatActivity() {
                     db.setAdded(id, 0)
                     Toast.makeText(this,"you have successfully withdrawn this class", Toast.LENGTH_SHORT).show()
                 }
+                init()
             }
             sendbtn.setOnClickListener {
                 //TODO-편집자 이름 추가.
