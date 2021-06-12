@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "Location">
+
+        <item>Seoul</item>
+        <item>Zwolle</item>
+
+    </string-array>
+
+    <string-array name = "Age">
+
+        <item>under 20s</item>
+        <item>20s</item>
+        <item>30s</item>
+        <item>40s</item>
+        <item>50s</item>
+        <item>60s</item>
+        <item>over 60s</item>
+    </string-array>
+</resources>

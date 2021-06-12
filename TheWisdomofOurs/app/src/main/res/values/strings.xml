@@ -15,4 +15,11 @@
     <string name="ChangingPW">Changing Password</string>
     <string name="AuthenticationNumber">Authentication number</string>
     <string name="NewPw">New Password</string>
+    <string name="Location">Location</string>
+    <string name="Seoul">Seoul</string>
+    <string name="Zwolle">Zwolle</string>
+    <string name="Confirm">Confirm</string>
+    <string name="Age">Age</string>
+    <string name="Next">Next</string>
+
 </resources>

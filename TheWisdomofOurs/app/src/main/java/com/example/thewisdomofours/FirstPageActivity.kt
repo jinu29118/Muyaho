@@ -1,26 +1,26 @@
 package com.example.thewisdomofours
 
 import android.content.Intent
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.thewisdomofours.databinding.ActivityLoginBinding
-import com.example.thewisdomofours.databinding.ActivityRegisterBinding
+import android.os.Bundle
+import com.example.thewisdomofours.databinding.ActivityFirstPageBinding
 
-class LoginActivity : AppCompatActivity() {
+import com.example.thewisdomofours.databinding.ActivityLoginBinding
+
+class FirstPageActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_login)
-        val binding= ActivityLoginBinding.inflate(layoutInflater)
+        val binding= ActivityFirstPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent= Intent(this, LocationActivity::class.java)
-        val intent2= Intent(this, ChangingPW::class.java)
-
-        binding.login2.setOnClickListener{
+        val intent= Intent(this, LoginActivity::class.java)
+        val intent2= Intent(this, RegisterActivity::class.java)
+        binding.loginStart.setOnClickListener{
             startActivity(intent)
         }
-
-        binding.forgetPw.setOnClickListener{
+        binding.Register.setOnClickListener{
             startActivity(intent2)
         }
     }
