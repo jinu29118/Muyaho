@@ -30,6 +30,30 @@ class DetailedLectureActivity : AppCompatActivity() {
         val location = findViewById<TextView>(R.id.location)
         val content = findViewById<EditText>(R.id.content_comment)
         val capacity = findViewById<TextView>(R.id.capacity_detail)
+        val wisdomBtn = findViewById<ImageView>(R.id.wisdomBtn)
+        var wisdom =0
+        wisdomBtn.setOnClickListener {
+            if(wisdom==0){
+                wisdom=1
+                wisdomBtn.setImageResource(R.drawable.lampon)
+            }
+            else{
+                wisdom=0
+                wisdomBtn.setImageResource(R.drawable.lampoff)
+            }
+        }
+        val recomBtn = findViewById<ImageView>(R.id.goodBtn)
+        var recom = 0
+        recomBtn.setOnClickListener {
+            if(recom==0){
+                recom=1
+                recomBtn.setImageResource(R.drawable.thumbupclicked)
+            }
+            else{
+                recom=0
+                recomBtn.setImageResource(R.drawable.thumbuppure)
+            }
+        }
         val tuto = findViewById<ImageView>(R.id.imageTuto2)
         val skip = findViewById<TextView>(R.id.detail_text3)
         tuto.setOnClickListener {
