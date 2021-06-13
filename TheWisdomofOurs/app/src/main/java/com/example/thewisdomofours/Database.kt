@@ -82,6 +82,7 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         db.execSQL(create_table)
         db.execSQL(create_table3)
         db.execSQL(create_class)
+        db.execSQL(create_comment)
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
 

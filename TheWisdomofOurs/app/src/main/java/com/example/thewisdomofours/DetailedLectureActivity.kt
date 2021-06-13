@@ -77,7 +77,7 @@ class DetailedLectureActivity : AppCompatActivity() {
             sendbtn.setOnClickListener {
                 //TODO-편집자 이름 추가.
                 if(id==-1){
-                    data.add(MyComment("user",content.text.toString()))
+                    data.add(MyComment("User",content.text.toString()))
                     val adapter = MyCommentAdapter(data)
                     recyclerView.adapter = adapter
                 }else {
