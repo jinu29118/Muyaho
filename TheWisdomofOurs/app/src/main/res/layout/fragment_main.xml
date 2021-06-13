@@ -1,82 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainFragment">
 
-    <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:text="Hot Lecture"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="more"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+                <ImageButton
+                    android:id="@+id/imageBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/hotLectureView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_background"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:text="My Lecture"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="more"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+                <ImageButton
+                    android:id="@+id/imageBtn2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/myLectureView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_background"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/tutorial2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:text="Hot Lecture"
-                android:textSize="30dp"
-                android:textStyle="bold"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="more"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:gravity="center"/>
-            <ImageButton
-                android:id="@+id/imageBtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/ic_baseline_arrow_forward_ios_24"/>
-        </LinearLayout>
+        android:background="#80cccccc"
+        android:visibility="gone">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/hotLectureView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/round_background"/>
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="#429eb5"
+            android:rotation="45"
+            android:layout_marginTop="585dp"
+            android:layout_marginStart="130dp"/>
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="555dp"
+            android:background="#429eb5"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:textSize="19dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="Categories"/>
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="#429eb5"
+            android:rotation="45"
+            android:layout_marginTop="585dp"
+            android:layout_marginStart="330dp"/>
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="555dp"
+            android:background="#429eb5"
+            android:text="My Page"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+    </FrameLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:text="My Lecture"
-                android:textSize="30dp"
-                android:textStyle="bold"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="more"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:gravity="center"/>
-            <ImageButton
-                android:id="@+id/imageBtn2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/ic_baseline_arrow_forward_ios_24"/>
-        </LinearLayout>
+    <FrameLayout
+        android:id="@+id/tutorial1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80cccccc"
+        android:visibility="visible">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myLectureView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/round_background"/>
-    </LinearLayout>
-</ScrollView>
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="#429eb5"
+            android:rotation="45"
+            android:layout_marginTop="43dp"
+            android:layout_marginStart="50dp"/>
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:background="#429eb5"
+            android:gravity="center"
+            android:text="Many People recommanded\nthese Lectures"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="#429eb5"
+            android:rotation="45"
+            android:layout_marginTop="423dp"
+            android:layout_marginStart="50dp"/>
+        <TextView
+            android:layout_width="230dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="430dp"
+            android:background="#429eb5"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="Lectures you added to\nMy Lecture"/>
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="#429eb5"
+            android:rotation="45"
+            android:layout_marginTop="585dp"
+            android:layout_marginStart="30dp"/>
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="555dp"
+            android:background="#429eb5"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:textSize="19dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="Main Page"/>
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="#429eb5"
+            android:rotation="45"
+            android:layout_marginTop="585dp"
+            android:layout_marginStart="230dp"/>
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="555dp"
+            android:background="#429eb5"
+            android:text="Notifications"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+    </FrameLayout>
+</FrameLayout>

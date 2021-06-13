@@ -11,7 +11,7 @@ class RecommandActivity : AppCompatActivity() {
         val binding=ActivityRecommandBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent=Intent(this,MainFragment::class.java)
+        val intent=Intent(this,MainActivity::class.java)
 
         binding.next.setOnClickListener{
             startActivity(intent)

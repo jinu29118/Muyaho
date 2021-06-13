@@ -51,6 +51,13 @@ class MainFragment : Fragment() {
                 val intent = Intent(activity, MyLectureActivity::class.java)
                 startActivity(intent)
             }
+            tutorial1.setOnClickListener {
+                tutorial2.visibility = View.VISIBLE
+                tutorial1.visibility = View.GONE
+            }
+            tutorial2.setOnClickListener {
+                tutorial2.visibility = View.GONE
+            }
         }
     }
 

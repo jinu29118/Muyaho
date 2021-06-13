@@ -2,6 +2,7 @@ package com.example.thewisdomofours
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.thewisdomofours.databinding.ActivityLoginBinding
 import com.example.thewisdomofours.databinding.ActivityRegisterBinding
