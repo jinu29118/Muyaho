@@ -66,16 +66,31 @@ class DetailedLectureActivity : AppCompatActivity() {
         }
         initData()
         val adapter = MyCommentAdapter(data)
+        val applybtn = findViewById<Button>(R.id.applyBtn)
+        val sendbtn = findViewById<Button>(R.id.button5)
         recyclerView.adapter = adapter
-        if(id==0){
+        if(id==-1){
             title.setText("How to make kimchi")
             detail.setText("Let's learn how to make kimchi and make together!")
             location.setText("40, Saecheonnyeon-ro, 407-1103, at 21.6.2021, 6:00pm")
             capacity.setText("7/8")
+            sendbtn.setOnClickListener {
+                //TODO-편집자 이름 추가.
+                if(id==-1){
+                    data.add(MyComment("user",content.text.toString()))
+                    val adapter = MyCommentAdapter(data)
+                    recyclerView.adapter = adapter
+                }else {
+                    val editor = "User"
+                    db.insertComment(editor, content.text.toString(), id)
+                    init()
+                }
+            }
+            applybtn.setOnClickListener {
+                Toast.makeText(this,"Sample. you cant apply",Toast.LENGTH_SHORT).show()
+            }
         }else {
             initData()
-            val applybtn = findViewById<Button>(R.id.applyBtn)
-            val sendbtn = findViewById<Button>(R.id.button5)
             title.setText(db.getTitle(id))
             detail.setText(db.getDetail(id))
             location.setText(db.getLocation(id))
