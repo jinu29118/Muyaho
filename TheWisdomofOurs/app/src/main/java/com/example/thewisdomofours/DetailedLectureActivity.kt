@@ -77,13 +77,23 @@ class DetailedLectureActivity : AppCompatActivity() {
             sendbtn.setOnClickListener {
                 //TODO-편집자 이름 추가.
                 if(id==-1){
-                    data.add(MyComment("User",content.text.toString()))
-                    val adapter = MyCommentAdapter(data)
-                    recyclerView.adapter = adapter
+                    if(content.text.toString().length>0) {
+                        data.add(MyComment("User", content.text.toString()))
+                        val adapter = MyCommentAdapter(data)
+                        recyclerView.adapter = adapter
+                        content.text.clear()
+                    }else{
+                        Toast.makeText(this,"you didnt write QnA", Toast.LENGTH_SHORT).show()
+                    }
                 }else {
+                    if(content.text.toString().length>0){
                     val editor = "User"
                     db.insertComment(editor, content.text.toString(), id)
+                    content.text.clear()
                     init()
+                }else {
+                        Toast.makeText(this, "you didnt write QnA", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
             applybtn.setOnClickListener {
