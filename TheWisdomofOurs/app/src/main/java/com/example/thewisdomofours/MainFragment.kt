@@ -17,27 +17,47 @@ class MainFragment : Fragment() {
     var binding: FragmentMainBinding?=null
     lateinit var adapter1: MyRecyclerAdapter
     lateinit var adapter2: MyRecyclerAdapter
-    //lateinit var pref: SharedPreferences
-    //lateinit var editor: SharedPreferences.Editor
 
-    var tmpArr = arrayListOf<String>("Hot Lecture1", "Hot Lecture2", "Hot Lecture3")
-    var tmpArr2 = arrayListOf<String>("My Lecture1", "My Lecture2", "My Lecture3")
+    var hotLecArr = arrayListOf<MySubLectureData>()
+    var myLecArr = arrayListOf<MySubLectureData>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(layoutInflater)
+        initData()
         initRecycler()
         return binding!!.root
     }
 
+    private fun initData() {
+        hotLecArr.add(MySubLectureData(1, "Lecture1", "lecture111", "#category1"))
+        hotLecArr.add(MySubLectureData(2, "Lecture2", "lecture222", "#category2"))
+        hotLecArr.add(MySubLectureData(3, "Lecture3", "lecture333", "#category3"))
+        myLecArr.add(MySubLectureData(1, "Lecture1", "lecture111", "#category1"))
+        myLecArr.add(MySubLectureData(2, "Lecture2", "lecture222", "#category2"))
+        myLecArr.add(MySubLectureData(3, "Lecture3", "lecture333", "#category3"))
+    }
+
     private fun initRecycler() {
         binding!!.hotLectureView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        adapter1 = MyRecyclerAdapter(tmpArr)
+        adapter1 = MyRecyclerAdapter(hotLecArr)
         binding!!.hotLectureView.addItemDecoration(DividerItemDecoration(context, 1))
+        adapter1.itemClickListener = object :MyRecyclerAdapter.OnItemClickListener{
+            override fun OnItemClick(
+                holder: MyRecyclerAdapter.ViewHolder,
+                view: View,
+                data: MySubLectureData,
+                position: Int
+            ) {
+                val intent = Intent(activity, DetailedLectureActivity::class.java)
+                startActivity(intent)
+            }
+
+        }
 
         binding!!.myLectureView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        adapter2 = MyRecyclerAdapter(tmpArr2)
+        adapter2 = MyRecyclerAdapter(hotLecArr)
         binding!!.myLectureView.addItemDecoration(DividerItemDecoration(context, 1))
 
         binding!!.myLectureView.adapter = adapter2
