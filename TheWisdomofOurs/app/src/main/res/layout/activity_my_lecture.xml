@@ -84,7 +84,6 @@
             android:background="#429eb5"
             android:gravity="center"
             android:text="List of lectures you have created\nPress each to check detail"
-            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="19dp"
             android:textStyle="bold" />
@@ -101,7 +100,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="430dp"
             android:background="#429eb5"
-            android:textAllCaps="false"
             android:gravity="center"
             android:textSize="19dp"
             android:textStyle="bold"
@@ -120,7 +118,6 @@
             android:layout_marginStart="110dp"
             android:layout_marginTop="520dp"
             android:background="#429eb5"
-            android:textAllCaps="false"
             android:gravity="center"
             android:textSize="19dp"
             android:textStyle="bold"
