@@ -107,7 +107,6 @@
             android:layout_marginStart="110dp"
             android:layout_marginTop="555dp"
             android:background="#429eb5"
-            android:textAllCaps="false"
             android:gravity="center"
             android:textSize="19dp"
             android:textColor="@color/white"
@@ -128,7 +127,6 @@
             android:background="#429eb5"
             android:text="My Page"
             android:gravity="center"
-            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="19dp"
             android:textStyle="bold" />
@@ -156,7 +154,6 @@
             android:background="#429eb5"
             android:gravity="center"
             android:text="Many People recommanded\nthese Lectures"
-            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="19dp"
             android:textStyle="bold" />
@@ -173,7 +170,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="430dp"
             android:background="#429eb5"
-            android:textAllCaps="false"
             android:gravity="center"
             android:textSize="19dp"
             android:textStyle="bold"
@@ -192,7 +188,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="555dp"
             android:background="#429eb5"
-            android:textAllCaps="false"
             android:gravity="center"
             android:textSize="19dp"
             android:textColor="@color/white"
@@ -213,7 +208,6 @@
             android:background="#429eb5"
             android:text="Notifications"
             android:gravity="center"
-            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="19dp"
             android:textStyle="bold" />

@@ -1,61 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MyLectureActivity">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10">
-
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="10">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lecture I created"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_margin="10dp"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/lectureCreate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/round_background"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lecture I created"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lecture I entered"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_margin="10dp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/lectureCreate"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/round_background"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/lectureEnter"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/round_background"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lecture I entered"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"/>
 
-    </ScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/lectureEnter"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/round_background"/>
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/addBtn"
+        </ScrollView>
+
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_margin="15dp"
+            android:text="Create new Lecture"
+            android:backgroundTint="@color/purple_500"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/tutorial3"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_margin="15dp"
-        android:text="Create new Lecture"
-        android:backgroundTint="@color/purple_500"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:background="#80cccccc"
+        android:visibility="visible">
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="#429eb5"
+            android:rotation="45"
+            android:layout_marginTop="43dp"
+            android:layout_marginStart="50dp"/>
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:background="#429eb5"
+            android:gravity="center"
+            android:text="List of lectures you have created\nPress each to check detail"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="#429eb5"
+            android:rotation="45"
+            android:layout_marginTop="423dp"
+            android:layout_marginStart="50dp"/>
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="430dp"
+            android:background="#429eb5"
+            android:gravity="center"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="List of lectures you have joined\nPress each to check detail"/>
+        <TextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="#429eb5"
+            android:rotation="45"
+            android:layout_marginTop="565dp"
+            android:layout_marginStart="250dp"/>
+        <TextView
+            android:layout_width="230dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="520dp"
+            android:background="#429eb5"
+            android:gravity="center"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="Press this to create\nyour own lecture"/>
+    </FrameLayout>
+</FrameLayout>

@@ -1,7 +1,10 @@
 package com.example.thewisdomofours
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thewisdomofours.databinding.ActivityMyLectureBinding
@@ -22,9 +25,21 @@ class MyLectureActivity : AppCompatActivity() {
     }
 
     private fun init(){
+        val pref = getSharedPreferences("tutorial", Context.MODE_PRIVATE)
+        val tutoSkip = pref.getBoolean("lectureT", false)
+        if(tutoSkip){
+            binding.tutorial3.visibility = View.GONE
+        }
+        val editor = pref.edit()
         binding.apply {
             addBtn.setOnClickListener {
-
+                val intent = Intent(this@MyLectureActivity, AddClassActivity::class.java)
+                startActivity(intent)
+            }
+            tutorial3.setOnClickListener {
+                tutorial3.visibility = View.GONE
+                editor.putBoolean("lectureT", true)
+                editor.commit()
             }
         }
     }
