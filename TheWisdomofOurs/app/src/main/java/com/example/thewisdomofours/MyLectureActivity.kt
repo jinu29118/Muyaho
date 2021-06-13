@@ -25,6 +25,12 @@ class MyLectureActivity : AppCompatActivity() {
     }
 
     private fun init(){
+        val pref = getSharedPreferences("tutorial", Context.MODE_PRIVATE)
+        val tutoSkip = pref.getBoolean("lectureT", false)
+        if(tutoSkip){
+            binding.tutorial3.visibility = View.GONE
+        }
+        val editor = pref.edit()
         binding.apply {
             addBtn.setOnClickListener {
                 val intent = Intent(this@MyLectureActivity, AddClassActivity::class.java)
@@ -32,6 +38,8 @@ class MyLectureActivity : AppCompatActivity() {
             }
             tutorial3.setOnClickListener {
                 tutorial3.visibility = View.GONE
+                editor.putBoolean("lectureT", true)
+                editor.commit()
             }
         }
     }
