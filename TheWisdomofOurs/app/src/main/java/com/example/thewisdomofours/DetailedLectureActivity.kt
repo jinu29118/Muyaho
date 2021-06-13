@@ -1,10 +1,8 @@
 package com.example.thewisdomofours
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,14 +30,24 @@ class DetailedLectureActivity : AppCompatActivity() {
         val location = findViewById<TextView>(R.id.location)
         val content = findViewById<EditText>(R.id.content_comment)
         val capacity = findViewById<TextView>(R.id.capacity_detail)
+        val tuto = findViewById<ImageView>(R.id.imageTuto2)
+        val skip = findViewById<TextView>(R.id.detail_text3)
+        tuto.setOnClickListener {
+            tuto.visibility = View.GONE
+            skip.visibility = View.GONE
+        }
+        skip.setOnClickListener {
+            tuto.visibility = View.GONE
+            skip.visibility = View.GONE
+        }
         initData()
         val adapter = MyCommentAdapter(data)
         recyclerView.adapter = adapter
         if(id==0){
-            title.setText("error")
-            detail.setText("error")
-            location.setText("error")
-            capacity.setText("0/0")
+            title.setText("How to make kimchi")
+            detail.setText("Let's learn how to make kimchi and make together!")
+            location.setText("40, Saecheonnyeon-ro, 407-1103, at 21.6.2021, 6:00pm")
+            capacity.setText("7/8")
         }else {
             initData()
             val applybtn = findViewById<Button>(R.id.applyBtn)
@@ -68,9 +76,15 @@ class DetailedLectureActivity : AppCompatActivity() {
             }
             sendbtn.setOnClickListener {
                 //TODO-편집자 이름 추가.
-                val editor= "editor"
-                db.insertComment(editor,content.text.toString(), id)
-                init()
+                if(id==-1){
+                    data.add(MyComment("user",content.text.toString()))
+                    val adapter = MyCommentAdapter(data)
+                    recyclerView.adapter = adapter
+                }else {
+                    val editor = "User"
+                    db.insertComment(editor, content.text.toString(), id)
+                    init()
+                }
             }
         }
     }
@@ -78,7 +92,7 @@ class DetailedLectureActivity : AppCompatActivity() {
 
         data.clear()
         if(id==-1)
-            data.add(MyComment("error","error"))
+            data.add(MyComment("user1 name","How long is the lecture?"))
         else
             data=db.getComment(id)
     }
