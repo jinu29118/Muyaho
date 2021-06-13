@@ -13,6 +13,7 @@ class MyLectureActivity : AppCompatActivity() {
     lateinit var binding: ActivityMyLectureBinding
     lateinit var adapter1: MyRecyclerAdapter
     lateinit var adapter2: MyRecyclerAdapter
+    lateinit var db: Database
 
     var createLecArr = arrayListOf<MySubLectureData>()
     var enterLecArr = arrayListOf<MySubLectureData>()
@@ -26,15 +27,16 @@ class MyLectureActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        createLecArr.add(MySubLectureData(1, "Lecture1", "lecture111", "#category1"))
-        createLecArr.add(MySubLectureData(2, "Lecture2", "lecture222", "#category2"))
-        createLecArr.add(MySubLectureData(3, "Lecture3", "lecture333", "#category3"))
-        enterLecArr.add(MySubLectureData(1, "Lecture1", "lecture111", "#category1"))
-        enterLecArr.add(MySubLectureData(2, "Lecture2", "lecture222", "#category2"))
-        enterLecArr.add(MySubLectureData(3, "Lecture3", "lecture333", "#category3"))
+        createLecArr.add(MySubLectureData(3, db.getTitle(3), db.getDetail(3), "Drawing"))
+        createLecArr.add(MySubLectureData(4, db.getTitle(4), db.getDetail(4), "Gardening"))
+        //createLecArr.add(MySubLectureData(3, "Lecture3", "lecture333", "category3"))
+        enterLecArr.add(MySubLectureData(5, db.getTitle(5), db.getDetail(5), "Traditional Game"))
+        enterLecArr.add(MySubLectureData(6, db.getTitle(6), db.getDetail(6), "Coding"))
+        //enterLecArr.add(MySubLectureData(3, "Lecture3", "lecture333", "category3"))
     }
 
     private fun init(){
+        db = Database(this)
         val pref = getSharedPreferences("tutorial", Context.MODE_PRIVATE)
         val tutoSkip = pref.getBoolean("lectureT", false)
         if(tutoSkip){
@@ -58,10 +60,34 @@ class MyLectureActivity : AppCompatActivity() {
         binding.lectureCreate.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         adapter1 = MyRecyclerAdapter(createLecArr)
         binding.lectureCreate.addItemDecoration(DividerItemDecoration(this, 1))
+        adapter1.itemClickListener = object :MyRecyclerAdapter.OnItemClickListener{
+            override fun OnItemClick(
+                holder: MyRecyclerAdapter.ViewHolder,
+                view: View,
+                data: MySubLectureData,
+                position: Int
+            ) {
+                val intent = Intent(this@MyLectureActivity, DetailedLectureActivity::class.java)
+                intent.putExtra("id", data.class_id)
+                startActivity(intent)
+            }
+        }
 
         binding.lectureEnter.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        adapter2 = MyRecyclerAdapter(createLecArr)
+        adapter2 = MyRecyclerAdapter(enterLecArr)
         binding.lectureEnter.addItemDecoration(DividerItemDecoration(this, 1))
+        adapter2.itemClickListener = object :MyRecyclerAdapter.OnItemClickListener{
+            override fun OnItemClick(
+                holder: MyRecyclerAdapter.ViewHolder,
+                view: View,
+                data: MySubLectureData,
+                position: Int
+            ) {
+                val intent = Intent(this@MyLectureActivity, DetailedLectureActivity::class.java)
+                intent.putExtra("id", data.class_id)
+                startActivity(intent)
+            }
+        }
 
         binding.lectureEnter.adapter = adapter2
         binding.lectureCreate.adapter = adapter1

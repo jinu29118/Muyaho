@@ -17,9 +17,17 @@ class MainFragment : Fragment() {
     var binding: FragmentMainBinding?=null
     lateinit var adapter1: MyRecyclerAdapter
     lateinit var adapter2: MyRecyclerAdapter
+    lateinit var manageDB: ManageDB
 
     var hotLecArr = arrayListOf<MySubLectureData>()
     var myLecArr = arrayListOf<MySubLectureData>()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is ManageDB)
+            manageDB = context
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,12 +39,18 @@ class MainFragment : Fragment() {
     }
 
     private fun initData() {
-        hotLecArr.add(MySubLectureData(1, "Lecture1", "lecture111", "#category1"))
-        hotLecArr.add(MySubLectureData(2, "Lecture2", "lecture222", "#category2"))
-        hotLecArr.add(MySubLectureData(3, "Lecture3", "lecture333", "#category3"))
-        myLecArr.add(MySubLectureData(1, "Lecture1", "lecture111", "#category1"))
-        myLecArr.add(MySubLectureData(2, "Lecture2", "lecture222", "#category2"))
-        myLecArr.add(MySubLectureData(3, "Lecture3", "lecture333", "#category3"))
+        hotLecArr.add(manageDB.getClass(1))
+        hotLecArr.add(manageDB.getClass(2))
+        hotLecArr.add(manageDB.getClass(3))
+        myLecArr.add(manageDB.getClass(3))
+        myLecArr.add(manageDB.getClass(4))
+        myLecArr.add(manageDB.getClass(5))
+        //hotLecArr.add(MySubLectureData(1, "Lecture1", "lecture111", "#category1"))
+        //hotLecArr.add(MySubLectureData(2, "Lecture2", "lecture222", "#category2"))
+        //hotLecArr.add(MySubLectureData(3, "Lecture3", "lecture333", "#category3"))
+        //myLecArr.add(MySubLectureData(1, "Lecture1", "lecture111", "#category1"))
+        //myLecArr.add(MySubLectureData(2, "Lecture2", "lecture222", "#category2"))
+        //myLecArr.add(MySubLectureData(3, "Lecture3", "lecture333", "#category3"))
     }
 
     private fun initRecycler() {
@@ -51,14 +65,26 @@ class MainFragment : Fragment() {
                 position: Int
             ) {
                 val intent = Intent(activity, DetailedLectureActivity::class.java)
+                intent.putExtra("id", data.class_id)
                 startActivity(intent)
             }
-
         }
 
         binding!!.myLectureView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        adapter2 = MyRecyclerAdapter(hotLecArr)
+        adapter2 = MyRecyclerAdapter(myLecArr)
         binding!!.myLectureView.addItemDecoration(DividerItemDecoration(context, 1))
+        adapter2.itemClickListener = object :MyRecyclerAdapter.OnItemClickListener{
+            override fun OnItemClick(
+                holder: MyRecyclerAdapter.ViewHolder,
+                view: View,
+                data: MySubLectureData,
+                position: Int
+            ) {
+                val intent = Intent(activity, DetailedLectureActivity::class.java)
+                intent.putExtra("id", data.class_id)
+                startActivity(intent)
+            }
+        }
 
         binding!!.myLectureView.adapter = adapter2
         binding!!.hotLectureView.adapter = adapter1

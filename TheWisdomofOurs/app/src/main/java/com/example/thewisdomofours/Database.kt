@@ -148,7 +148,7 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
     }
     fun getTitle(id:Int):String{
         val database=this.readableDatabase
-        val query = "select * frota$table_class where $class_id ='$id';"
+        val query = "select * from $table_class where $class_id ='$id';"
         val c = database.rawQuery(query,null)
         var str = ""
         while(c.moveToNext())
