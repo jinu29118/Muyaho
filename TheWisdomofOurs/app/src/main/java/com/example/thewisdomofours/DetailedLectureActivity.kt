@@ -23,7 +23,8 @@ class DetailedLectureActivity : AppCompatActivity() {
         init()
     }
     private fun init() {
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView_detailed)
+        initData()
+        recyclerView = findViewById(R.id.recyclerView_detailed)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val title = findViewById<TextView>(R.id.title_detail)
         val detail = findViewById<TextView>(R.id.detail_detail)
@@ -64,7 +65,7 @@ class DetailedLectureActivity : AppCompatActivity() {
             tuto.visibility = View.GONE
             skip.visibility = View.GONE
         }
-        initData()
+
         val adapter = MyCommentAdapter(data)
         val applybtn = findViewById<Button>(R.id.applyBtn)
         val sendbtn = findViewById<Button>(R.id.button5)
@@ -126,23 +127,43 @@ class DetailedLectureActivity : AppCompatActivity() {
             sendbtn.setOnClickListener {
                 //TODO-편집자 이름 추가.
                 if(id==-1){
-                    data.add(MyComment("user",content.text.toString()))
-                    val adapter = MyCommentAdapter(data)
-                    recyclerView.adapter = adapter
+                    if(content.text.toString().length>0) {
+                        data.add(MyComment("User", content.text.toString()))
+                        val adapter = MyCommentAdapter(data)
+                        recyclerView.adapter = adapter
+                        content.text.clear()
+                    }else{
+                        Toast.makeText(this,"you didnt write QnA", Toast.LENGTH_SHORT).show()
+                    }
                 }else {
-                    val editor = "User"
-                    db.insertComment(editor, content.text.toString(), id)
-                    init()
+                    if(content.text.toString().length>0) {
+                        val editor = "User"
+                        db.insertComment(editor, content.text.toString(), id)
+                        content.text.clear()
+                        initData()
+                        val adapter = MyCommentAdapter(data)
+                        recyclerView.adapter = adapter
+                    }else{
+                        Toast.makeText(this,"you didnt write QnA", Toast.LENGTH_SHORT).show()
+                        initData()
+                        val adapter = MyCommentAdapter(data)
+                        recyclerView.adapter = adapter
+                    }
+
                 }
             }
         }
     }
     private fun initData(){
-
         data.clear()
         if(id==-1)
             data.add(MyComment("user1 name","How long is the lecture?"))
-        else
-            data=db.getComment(id)
+        else {
+            data = db.getComment(id)
+            for(a in data){
+                println(a.content)
+                println(a.editor)
+            }
+        }
     }
 }

@@ -74,8 +74,8 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
                 "$class_added int," +
                 "$class_id integer primary key autoincrement);"
         val create_comment="create table if not exists $table_comment(" +
-                "$editor text," +
                 "$comment_id integer," +
+                "$editor text," +
                 "$comment_id2 integer primary key autoincrement," +
                 "$comment_content text);"
         db!!.execSQL(create_table2)
