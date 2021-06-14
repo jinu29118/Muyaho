@@ -268,14 +268,22 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
     fun setAdded(id:Int, added:Int):Boolean{
         val strsql = "select * from $table_class where $class_id='$id';"
         val db = writableDatabase
+        val db2 = readableDatabase
         val cursor = db.rawQuery(strsql, null)
-        val flag = cursor.moveToFirst()
+        val cursor2 = db2.rawQuery(strsql, null)
+        val values = ContentValues()
+        while(cursor2.moveToNext()){
+            val str = cursor2.getInt(cursor.getColumnIndex(class_added))
+            values.put(class_added, added)
+            println(str - 1)
+        }
+        var flag = cursor.moveToFirst()
         if(flag) {
             val values = ContentValues()
             values.put(class_added, added)
             db.update(
-                tableName, values, "$class_added=?", arrayOf(
-                    cursor.getString(cursor.getColumnIndex(class_added))
+                table_class, values, "$class_added=?", arrayOf(
+                    cursor.getInt(cursor.getColumnIndex(class_added)).toString()
                 )
             )
         }
