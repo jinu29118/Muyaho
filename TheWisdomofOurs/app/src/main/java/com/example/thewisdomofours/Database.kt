@@ -216,7 +216,7 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         return str
     }
     fun addPeople(id: Int) {
-        val strsql = "select * from $table_class where $habitid='$id';"
+        val strsql = "select * from $table_class where $class_id='$id';"
         val db = writableDatabase
         val db2 = readableDatabase
         val cursor = db.rawQuery(strsql, null)
@@ -241,7 +241,7 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         db.close()
     }
     fun minusPeople(id: Int) {
-        val strsql = "select * from $table_class where $habitid='$id';"
+        val strsql = "select * from $table_class where $class_id='$id';"
         val db = writableDatabase
         val db2 = readableDatabase
         val cursor = db.rawQuery(strsql, null)
@@ -266,7 +266,7 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         db.close()
     }
     fun setAdded(id:Int, added:Int):Boolean{
-        val strsql = "select * from $tableName where $habitid='$id';"
+        val strsql = "select * from $table_class where $class_id='$id';"
         val db = writableDatabase
         val cursor = db.rawQuery(strsql, null)
         val flag = cursor.moveToFirst()
@@ -275,7 +275,7 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
             values.put(class_added, added)
             db.update(
                 tableName, values, "$class_added=?", arrayOf(
-                    cursor.getString(cursor.getColumnIndex(title))
+                    cursor.getString(cursor.getColumnIndex(class_added))
                 )
             )
         }
