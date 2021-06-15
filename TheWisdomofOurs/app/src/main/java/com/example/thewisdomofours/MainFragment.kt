@@ -38,7 +38,7 @@ class MainFragment : Fragment() {
     }
 
     private fun initData() {
-        hotLecArr.add(MySubLectureData(1, "Make Kimchi", "Let's learn how to make korea traditional food", "Food"))
+        hotLecArr.add(MySubLectureData(-1, "Make Kimchi", "Let's learn how to make korea traditional food", "Food"))
         hotLecArr.add(manageDB.getClass(2))
         hotLecArr.add(manageDB.getClass(3))
         myLecArr.add(manageDB.getClass(3))

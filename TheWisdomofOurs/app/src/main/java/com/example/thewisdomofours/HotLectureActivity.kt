@@ -43,7 +43,7 @@ class HotLectureActivity : AppCompatActivity() {
 
     private fun initData() {
         db = Database(this)
-        hotLecArr.add(MySubLectureData(1, "Make Kimchi", "Let's learn how to make korea traditional food", "Food"))
+        hotLecArr.add(MySubLectureData(-1, "Make Kimchi", "Let's learn how to make korea traditional food", "Food"))
         for (i in 2..6){
             val tmp = "category" + i.toString()
             hotLecArr.add(MySubLectureData(i, db.getTitle(i), db.getDetail(i), tmp))
