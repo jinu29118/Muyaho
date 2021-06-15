@@ -230,9 +230,9 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         var flag = cursor.moveToFirst()
         if(flag) {
             db.update(
-                table_class, values, "$class_people=?",
+                table_class, values, "$class_id=?",
                 arrayOf(
-                    cursor.getInt(cursor.getColumnIndex(class_people)).toString()
+                        cursor.getInt(cursor.getColumnIndex(class_id)).toString()
                 )
             )
             println("+")
@@ -255,10 +255,10 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         var flag = cursor.moveToFirst()
         if(flag) {
             db.update(
-                table_class, values, "$class_people=?",
-                arrayOf(
-                    cursor.getInt(cursor.getColumnIndex(class_people)).toString()
-                )
+                    table_class, values, "$class_id=?",
+                    arrayOf(
+                            cursor.getInt(cursor.getColumnIndex(class_id)).toString()
+                    )
             )
             println("+")
         }
@@ -282,8 +282,8 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
             val values = ContentValues()
             values.put(class_added, added)
             db.update(
-                table_class, values, "$class_added=?", arrayOf(
-                    cursor.getInt(cursor.getColumnIndex(class_added)).toString()
+                table_class, values, "$class_id=?", arrayOf(
+                    cursor.getInt(cursor.getColumnIndex(class_id)).toString()
                 )
             )
         }
