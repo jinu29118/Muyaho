@@ -75,6 +75,8 @@ class DetailedLectureActivity : AppCompatActivity() {
             detail.setText("Let's learn how to make kimchi and make together!")
             location.setText("40, Saecheonnyeon-ro, 407-1103, at 21.6.2021, 6:00pm")
             capacity.setText("7/8")
+            val kimchi = findViewById<ImageView>(R.id.kimchi)
+            kimchi.visibility = View.VISIBLE
             sendbtn.setOnClickListener {
                 //TODO-편집자 이름 추가.
                 if(id==-1){
