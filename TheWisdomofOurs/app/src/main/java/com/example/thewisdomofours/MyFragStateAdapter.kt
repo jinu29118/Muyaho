@@ -13,6 +13,7 @@ class MyFragStateAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapte
         return when(position){
             0 -> MainFragment()
             2 -> NoticeFragment()
+            3 -> ProfileFragment()
             else -> MainFragment()
         }
     }
